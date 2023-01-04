@@ -7,7 +7,7 @@ class Tree
   attr_accessor :root, :current_dir
 
   def initialize
-    @root = Directory.create_root
+    @root = Directory.new('/', nil)
     @current_dir = @root
   end
 
@@ -48,10 +48,6 @@ class Tree
     current_dir.children.map(&:ls).join
   end
 
-  def print
-    root.print
-  end
-
   def all_directories
     root.all_directories
   end
@@ -61,20 +57,9 @@ class Tree
   end
 
   def update
-    used_space = 70_000_000 - root.size
-
     missing_space = 30_000_000 - 27_963_297
 
-    p all_directories.map(&:size).filter { _1 >= missing_space }.sort
-  end
-
-  def traverse
-    root.children.reduce(0) do |sum, child|
-      next sum if child.is_a? SimpleFile
-
-      child.children
-      sum + child.size
-    end
+    p all_directories.map(&:size).filter { _1 >= missing_space }.min
   end
 end
 
@@ -114,10 +99,6 @@ class Directory < Node
     super(name, parent)
   end
 
-  def self.create_root
-    Directory.new('/', nil)
-  end
-
   def create_dir(name)
     children << Directory.new(name, self)
   end
@@ -142,11 +123,6 @@ class Directory < Node
 
   def size
     children.map(&:size).sum
-  end
-
-  def print
-    puts "DIR: #{name}"
-    children.each { |child| child.print }
   end
 end
 
