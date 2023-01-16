@@ -11,14 +11,42 @@ checkpoints = [20, 60, 100, 140, 180, 220]
 x = 1
 queue = {}
 cycle = 0
-total_cycles = 0
+crt = Array.new(6) { Array.new(40) }
+
+coords = [0, 0]
+
+move_cursor = lambda { |cycle|
+  # binding.break
+  if cycle % 40 == 0
+    coords[0] = 0
+    if coords[1] >= 5
+      coords[1] = 0
+    else
+      coords[1] += 1
+    end
+  else
+    coords[0] += 1
+  end
+}
+
+draw = lambda do |_cycle|
+  current = coords[0]
+  # binding.break
+  crt[coords[1]][coords[0]] = if [x - 1, x, x + 1].include?(current)
+                                '#'
+                              else
+                                '.'
+                              end
+end
 
 run_cycle = lambda do |cycle|
   if checkpoints.include?(cycle)
     puts "#{x} times #{cycle}"
     sum += (x * cycle)
   end
+  draw.call(cycle)
   x += queue[cycle] if queue[cycle]
+  move_cursor.call(cycle)
 end
 
 input.each_line.map(&:chomp).each do |line|
@@ -27,17 +55,22 @@ input.each_line.map(&:chomp).each do |line|
     cycle += 1
     queue[cycle] = nil
     run_cycle.call(cycle)
+
   in ['addx', /\d+/ => value]
     queue[cycle + 1] = nil
     queue[cycle + 2] = value.to_i
     cycle += 1
     run_cycle.call(cycle)
+
     cycle += 1
     run_cycle.call(cycle)
+
   end
 end
 
-p queue
+crt.each do |line|
+  puts line.join('')
+end
 
 p sum
 
