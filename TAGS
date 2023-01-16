@@ -1,0 +1,59 @@
+
+2022/06/solution.rb,349
+def read_inputread_input3,0
+def part_onepart_one8,0
+def part_twopart_two20,0
+def all_different(str)all_different32,0
+class SolutionTest < Minitest::TestSolutionTest42,0
+  def test_file_inputtest_file_input43,0
+  def test_all_differenttest_all_different48,0
+  def test_part_onetest_part_one53,0
+  def test_part_twotest_part_two57,0
+
+2022/07/solution.rb,1400
+class TreeTree6,0
+  attr_accessor :root, :current_dirroot7,0
+  attr_accessor :root, :current_dirroot=7,0
+  attr_accessor :root, :current_dircurrent_dir7,0
+  attr_accessor :root, :current_dircurrent_dir=7,0
+  def initializeinitialize9,0
+  def change_dir(name)change_dir14,0
+  def create_dir(name)create_dir25,0
+  def create_file(name, size)create_file29,0
+  def directoriesdirectories33,0
+  def filesfiles37,0
+  def find_dir(name)find_dir41,0
+  def lsls47,0
+  def all_directoriesall_directories51,0
+  def total_sizetotal_size55,0
+  def updateupdate59,0
+class NodeNode66,0
+  attr_accessor :name, :parentname67,0
+  attr_accessor :name, :parentname=67,0
+  attr_accessor :name, :parentparent67,0
+  attr_accessor :name, :parentparent=67,0
+  def initialize(name, parent)initialize69,0
+  def lsls74,0
+class SimpleFile < NodeSimpleFile79,0
+  attr_accessor :sizesize80,0
+  attr_accessor :sizesize=80,0
+  def initialize(name, parent, size)initialize82,0
+  def printprint88,0
+class Directory < NodeDirectory93,0
+  attr_accessor :childrenchildren94,0
+  attr_accessor :childrenchildren=94,0
+  def initialize(name, parent)initialize96,0
+  def create_dir(name)create_dir102,0
+  def create_file(name, size)create_file106,0
+  def filesfiles110,0
+  def directoriesdirectories114,0
+  def all_directoriesall_directories118,0
+  def sizesize124,0
+
+2022/09/solution.rb,95
+class SolutionTest < Minitest::TestSolutionTest150,0
+  def test_adjacenttest_adjacent151,0
+
+2022/10/solution.rb,95
+class SolutionTest < Minitest::TestSolutionTest149,0
+  def test_adjacenttest_adjacent150,0
