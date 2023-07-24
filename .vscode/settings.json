@@ -3,5 +3,8 @@
   "ruby.format": "rubyfmt",
   "[ruby]": {
     "editor.formatOnSave": true
+  },
+  "ruby.lint": {
+    "rubocop": false
   }
 }
