@@ -63,7 +63,7 @@ class Tree
   end
 end
 
-class Node
+class Vertex
   attr_accessor :name, :parent
 
   def initialize(name, parent)
@@ -76,7 +76,7 @@ class Node
   end
 end
 
-class SimpleFile < Node
+class SimpleFile < Vertex
   attr_accessor :size
 
   def initialize(name, parent, size)
@@ -90,7 +90,7 @@ class SimpleFile < Node
   end
 end
 
-class Directory < Node
+class Directory < Vertex
   attr_accessor :children
 
   def initialize(name, parent)
