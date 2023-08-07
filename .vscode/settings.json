@@ -1,6 +1,6 @@
 {
   "ruby.useLanguageServer": true,
-  "ruby.format": "standard",
+  "ruby.format": "prettier",
   "[ruby]": {
     "editor.formatOnSave": false
   },

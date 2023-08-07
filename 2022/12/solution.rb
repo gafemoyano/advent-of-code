@@ -4,14 +4,7 @@ require 'debug'
 path = File.expand_path('input.txt', __dir__)
 input = File.read(path)
 
-p 'Part 1'
-
-letters = ('a'..'z').to_a
-map = []
-
 grid = input.split("\n").map(&:chars)
-
-p grid
 
 heights = Array.new(grid.size) { Array.new(grid[0].size) }
 distances = {}
@@ -21,6 +14,7 @@ e = nil
 grid.each_with_index do |row, x|
   row.each_with_index do |cell, y|
     case cell
+    # when 's' --part 1
     when 'a'
       heights[x][y] = 1
       distances[[x, y]] = 0
@@ -42,17 +36,19 @@ until neighbors.empty?
     nx = x + dx
     ny = y + dy
 
-    if nx.between?(0, grid.size - 1) && ny.between?(0, grid.first.size - 1) && heights[nx][ny] <= heights[x][y] + 1
-      if distances[[nx, ny]].nil? || distances[[nx, ny]] > distance + 1
-        neighbors << [nx, ny]
-        distances[[nx, ny]] = distance + 1
-      end
+    next unless nx.between?(0, grid.size - 1) &&
+                ny.between?(0, grid.first.size - 1) &&
+                heights[nx][ny] <= heights[x][y] + 1
+
+    if distances[[nx, ny]].nil? || distances[[nx, ny]] > (distance + 1)
+      neighbors << [nx, ny]
+      distances[[nx, ny]] = distance + 1
     end
   end
 end
 
-p distances
-p distances[e]
+puts distances
+puts distances[e]
 
 # class Vertex
 #   attr_accessor :position, :letter
