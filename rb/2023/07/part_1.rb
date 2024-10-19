@@ -36,9 +36,6 @@ def classify(hand, input)
   end
 end
 
-def jokerify(hand)
-end
-
 counted_cards = []
 types = Hash.new { |hash, key| hash[key] = [] }
 

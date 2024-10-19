@@ -33,13 +33,12 @@ p points
 p "========PART 2========="
 
 scratch = {
-  1 => []
+  1 => 1
 }
-copies = {}
 
-DATA.each_line do |line|
-  card_number = line.match(/Card (\d+):/)[1].to_i
-
+input.each_line do |line|
+  card_number = line.match(/Card\s+(\d+):/)[1].to_i
+  scratch[card_number] ||= 1
   numbers = line
     .split(":")[1]
     .split("|")
@@ -49,20 +48,16 @@ DATA.each_line do |line|
   mine, winning = numbers
   count = winning.intersection(mine).size
 
-  (1..count).each do |i|
-    copies[card_number] ||= []
-    copies[card_number] << card_number + i
-
-    scratch[card_number + i] ||= []
-    scratch[card_number + i] << card_number
+  scratch[card_number].times do
+    (1..count).each do |i|
+      scratch[card_number + i] ||= 1
+      scratch[card_number + i] += 1
+    end
   end
-
-
-
 end
 p "========POINTS========="
-p copies
-p scratch
+p scratch.values.sum
+
 
 class SolutionTest < Minitest::Test
   def test_score

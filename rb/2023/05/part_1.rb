@@ -1,4 +1,3 @@
-
 require "minitest/autorun"
 require "debug"
 
@@ -6,7 +5,7 @@ path = File.expand_path("input.txt", __dir__)
 input = File.read(path)
 
 seeds = []
-map = {}
+mapping = {}
 
 lines = input.each_line.to_a
 index = 0
@@ -22,23 +21,19 @@ while index < lines.size
     index += 1
   in /(\w+-to-\w+) map:/
     name = $1
-    map[name] = {}
+    mapping[name] = {}
 
     index += 1
     while true
-      p "enter"
       next_line = lines[index]
       break unless next_line
       next_line = next_line.strip
       break unless next_line.match?(/(\d+) (\d+) (\d+)/)
-      p "after break"
 
       dest_start, source_start, length = next_line.split.map(&:to_i)
+      stop = (source_start + length)
+      mapping[name][(source_start...stop)] = dest_start - source_start
 
-      (source_start...(source_start + length)).each_with_index do |s, i|
-        map[name][s] = dest_start + i
-      end
-      p "after loopy"
       index += 1
     end
   else
@@ -46,23 +41,33 @@ while index < lines.size
   end
 end
 
+pp mapping
 locations = []
 
 seeds.each do |seed|
-  p "seed: #{seed}"
-  soil = map["seed-to-soil"][seed] || seed
-  fert = map["soil-to-fertilizer"][soil] || soil
-  water = map["fertilizer-to-water"][fert] || fert
-  light = map["water-to-light"][water] || water
-  temperature = map["light-to-temperature"][light] || light
-  humidity = map["temperature-to-humidity"][temperature] || temperature
-  location = map["humidity-to-location"][humidity] || humidity
+  location = mapping.values.reduce(seed) do |start, mapping|
+    res = start
+    mapping.each do |(range, offset)|
+      if range.include?(res)
+        res = res + offset
+        break
+      end
+    end
+    res
+  end
 
+  # soil = map["seed-to-soil"].reduce(seed) do |dest, (source, offset)|
+  #   if source.include?(dest)
+  #     dest + offset
+  #   else
+  #     dest
+  #   end
+  # end
   locations << location
 end
 pp locations.min
+# pp locations.min
 # Seed 79, soil 81, fertilizer 81, water 81, light 74, temperature 78, humidity 78, location 82.
-
 
 class SolutionTest < Minitest::Test
   def test_score

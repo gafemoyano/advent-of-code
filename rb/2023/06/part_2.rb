@@ -9,7 +9,8 @@ rec = DATA.readline.scan(/\d+/).join.to_i
 
 time.times.count { |hold|
   hold * (time - hold) > rec
-}.tap { puts _1 }
+}
+  .tap { puts _1 }
 
 class SolutionTest < Minitest::Test
   def test_score
