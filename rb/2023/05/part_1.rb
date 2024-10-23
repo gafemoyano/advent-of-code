@@ -49,7 +49,7 @@ seeds.each do |seed|
     res = start
     mapping.each do |(range, offset)|
       if range.include?(res)
-        res = res + offset
+        res += offset
         break
       end
     end

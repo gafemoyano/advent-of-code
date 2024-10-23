@@ -40,7 +40,7 @@ while index < lines.size
   end
 end
 
-seed_ranges = seeds.each_slice(2).map { |start, range| (start...(start + range)) }
+seed_ranges = seeds.each_slice(2).map { |position, range| (position...(position + range)) }
 
 def overlapping_range(a, b)
   if b.begin <= a.end && a.begin <= b.end
