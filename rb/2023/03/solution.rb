@@ -1,4 +1,4 @@
-path = File.expand_path('input.txt', __dir__)
+path = File.expand_path("input.txt", __dir__)
 input = File.read(path)
 
 # Part 1
@@ -26,15 +26,15 @@ numbers.sum { |(x, y), num|
     .match?(/[^\d\.]/)
     .then { _1 ? num.to_i : 0 }
 }
-.tap { puts _1 }
+  .tap { puts _1 }
 
 # Part 2
 
 input
   .each_line
   .sum {
-    blue  = _1.scan(/(\d+) b/).flatten.map(&:to_i).max
-    red   = _1.scan(/(\d+) r/).flatten.map(&:to_i).max
+    blue = _1.scan(/(\d+) b/).flatten.map(&:to_i).max
+    red = _1.scan(/(\d+) r/).flatten.map(&:to_i).max
     green = _1.scan(/(\d+) g/).flatten.map(&:to_i).max
 
     blue * red * green

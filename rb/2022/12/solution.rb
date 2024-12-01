@@ -1,7 +1,7 @@
 # require 'minitest/autorun'
-require 'debug'
+require "debug"
 
-path = File.expand_path('input.txt', __dir__)
+path = File.expand_path("input.txt", __dir__)
 input = File.read(path)
 
 grid = input.split("\n").map(&:chars)
@@ -15,15 +15,15 @@ grid.each_with_index do |row, x|
   row.each_with_index do |cell, y|
     case cell
     # when 's' --part 1
-    when 'a'
+    when "a"
       heights[x][y] = 1
       distances[[x, y]] = 0
       neighbors << [x, y]
-    when 'E'
+    when "E"
       heights[x][y] = 26
       e = [x, y]
     else
-      heights[x][y] = cell.ord - 'a'.ord + 1
+      heights[x][y] = cell.ord - "a".ord + 1
     end
   end
 end
@@ -37,8 +37,8 @@ until neighbors.empty?
     ny = y + dy
 
     next unless nx.between?(0, grid.size - 1) &&
-                ny.between?(0, grid.first.size - 1) &&
-                heights[nx][ny] <= heights[x][y] + 1
+      ny.between?(0, grid.first.size - 1) &&
+      heights[nx][ny] <= heights[x][y] + 1
 
     if distances[[nx, ny]].nil? || distances[[nx, ny]] > (distance + 1)
       neighbors << [nx, ny]

@@ -1,10 +1,10 @@
 # require 'minitest/autorun'
-require 'debug'
+require "debug"
 
-path = File.expand_path('input.txt', __dir__)
+path = File.expand_path("input.txt", __dir__)
 input = File.read(path)
 
-p 'Part 1'
+p "Part 1"
 
 sum = 0
 checkpoints = [20, 60, 100, 140, 180, 220]
@@ -33,10 +33,10 @@ draw = lambda do |_cycle|
   current = coords[0]
   # binding.break
   crt[coords[1]][coords[0]] = if [x - 1, x, x + 1].include?(current)
-                                '#'
-                              else
-                                '.'
-                              end
+    "#"
+  else
+    "."
+  end
 end
 
 run_cycle = lambda do |cycle|
@@ -56,7 +56,7 @@ input.each_line.map(&:chomp).each do |line|
     queue[cycle] = nil
     run_cycle.call(cycle)
 
-  in ['addx', /\d+/ => value]
+  in ["addx", /\d+/ => value]
     queue[cycle + 1] = nil
     queue[cycle + 2] = value.to_i
     cycle += 1
@@ -69,7 +69,7 @@ input.each_line.map(&:chomp).each do |line|
 end
 
 crt.each do |line|
-  puts line.join('')
+  puts line.join("")
 end
 
 p sum

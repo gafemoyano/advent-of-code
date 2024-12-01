@@ -23,7 +23,7 @@ while index < lines.size
     maps[name] = {}
 
     index += 1
-    while true
+    loop do
       next_line = lines[index]
       break unless next_line
       next_line = next_line.strip

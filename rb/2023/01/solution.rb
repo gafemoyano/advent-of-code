@@ -1,4 +1,4 @@
-path = File.expand_path('input.txt', __dir__)
+path = File.expand_path("input.txt", __dir__)
 input = File.read(path)
 
 # Part 1
@@ -8,15 +8,15 @@ input
   .tap { puts _1 }
 
 # Part 2
-DIGITS = { 'one' => 1,
-           'two' => 2,
-           'three' => 3,
-           'four' => 4,
-           'five' => 5,
-           'six' => 6,
-           'seven' => 7,
-           'eight' => 8,
-           'nine' => 9 }
+DIGITS = {"one" => 1,
+          "two" => 2,
+          "three" => 3,
+          "four" => 4,
+          "five" => 5,
+          "six" => 6,
+          "seven" => 7,
+          "eight" => 8,
+          "nine" => 9}
 
 input
   .each_line

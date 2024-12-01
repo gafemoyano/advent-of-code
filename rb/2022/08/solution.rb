@@ -1,4 +1,4 @@
-path = File.expand_path('input.txt', __dir__)
+path = File.expand_path("input.txt", __dir__)
 input = File.read(path)
 
 grid = input.each_line.map { _1.chomp.chars.map(&:to_i) }
@@ -17,10 +17,10 @@ visibility = Array.new(grid.size) { Array.new(grid.first.size) { 1 } }
     visibility[row][column] = 0 if east && west && south && north
   end
 end
-p 'part 1'
+p "part 1"
 p visibility.flatten.filter { _1 == 1 }.count
 
-p 'part 2'
+p "part 2"
 scores = Array.new(grid.size) { Array.new(grid.first.size) { 0 } }
 
 (1..(grid.length - 2)).step(1) do |row|
@@ -54,8 +54,8 @@ end
 # p grid
 p scores
 
-h = grid.size / 2
-l = grid.first.size / 2
+grid.size
+grid.first.size
 
 p scores.flatten.max
 

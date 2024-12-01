@@ -2,7 +2,7 @@ require "minitest/autorun"
 require "debug"
 
 path = File.expand_path("input.txt", __dir__)
-input = File.read(path)
+File.read(path)
 
 time = DATA.readline.scan(/\d+/).join.to_i
 rec = DATA.readline.scan(/\d+/).join.to_i

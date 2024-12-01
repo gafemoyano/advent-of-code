@@ -1,7 +1,7 @@
-require 'minitest/autorun'
+require "minitest/autorun"
 
 def read_input
-  path = File.expand_path('input.txt', __dir__)
+  path = File.expand_path("input.txt", __dir__)
   File.read(path)
 end
 
@@ -33,10 +33,10 @@ def all_different(str)
   str.chars.uniq.length == str.length
 end
 
-puts "#{'-' * 25}PART 1#{'-' * 25}"
+puts "#{"-" * 25}PART 1#{"-" * 25}"
 part_one
 
-puts "#{'-' * 25}PART 2#{'-' * 25}"
+puts "#{"-" * 25}PART 2#{"-" * 25}"
 p part_two
 
 class SolutionTest < Minitest::Test
@@ -46,12 +46,12 @@ class SolutionTest < Minitest::Test
   end
 
   def test_all_different
-    assert all_different('hola')
-    assert !all_different('aaaa')
+    assert all_different("hola")
+    assert !all_different("aaaa")
   end
 
   def test_part_one
-    assert_equal part_one, ['jqvg', 1790, 1794]
+    assert_equal part_one, ["jqvg", 1790, 1794]
   end
 
   def test_part_two

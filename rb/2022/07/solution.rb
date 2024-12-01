@@ -1,25 +1,25 @@
-require 'minitest/autorun'
+require "minitest/autorun"
 
-path = File.expand_path('input.txt', __dir__)
+path = File.expand_path("input.txt", __dir__)
 input = File.read(path)
 
 class Tree
   attr_accessor :root, :current_dir
 
   def initialize
-    @root = Directory.new('/', nil)
+    @root = Directory.new("/", nil)
     @current_dir = @root
   end
 
   def change_dir(name)
     self.current_dir = case name
-                       when '/'
-                         @root
-                       when '..'
-                         current_dir.parent
-                       else
-                         find_dir(name)
-                       end
+    when "/"
+      @root
+    when ".."
+      current_dir.parent
+    else
+      find_dir(name)
+    end
   end
 
   def create_dir(name)
@@ -39,7 +39,7 @@ class Tree
   end
 
   def find_dir(name)
-    raise StandardError, 'that method doesnt exist' unless (dir = directories.find { _1.name == name })
+    raise StandardError, "that method doesnt exist" unless (dir = directories.find { _1.name == name })
 
     dir
   end
@@ -129,25 +129,25 @@ end
 fs = Tree.new
 
 input.each_line do |line|
-  ary = line.split(' ')
+  ary = line.split(" ")
   case ary
-  in ['$', 'cd', dir]
+  in ["$", "cd", dir]
     fs.change_dir(dir)
-  in ['$', 'ls']
+  in ["$", "ls"]
     next
-  in ['dir', name]
+  in ["dir", name]
     fs.create_dir(name)
   in [size, name]
     fs.create_file(name, size)
   else
-    puts 'WHAT THE FUCK'
+    puts "WHAT THE FUCK"
   end
 end
 
-p '----SOLUTION 1-------'
+p "----SOLUTION 1-------"
 p fs.total_size
 
-p '----SOLUTION 2-------'
+p "----SOLUTION 2-------"
 p fs.update
 
 directories = Hash.new { |h, k| h[k] = [] }
@@ -158,12 +158,12 @@ DATA.each_line do |line|
   case line.split
   in [/\d+/ => size, _file]
     directories[current_dir.clone] << size.to_i
-  in ['dir', /\w+/ => dir]
+  in ["dir", /\w+/ => dir]
     new_dir = current_dir.clone.append(dir)
     directories[current_dir.clone] << directories[new_dir]
-  in ['$', 'cd', '..']
+  in ["$", "cd", ".."]
     current_dir.pop
-  in ['$', 'cd', /.+/ => dir]
+  in ["$", "cd", /.+/ => dir]
     current_dir << dir
   else # ls
   end

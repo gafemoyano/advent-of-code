@@ -1,12 +1,9 @@
-require 'minitest/autorun'
-require 'set'
+require "minitest/autorun"
 
-path = File.expand_path('input.txt', __dir__)
+path = File.expand_path("input.txt", __dir__)
 input = File.read(path)
 
 places = Set[[0, 0]]
-
-adjacent = ->(h, t) { (h[0] - t[0]).abs <= 1 && (h[1] - t[1]).abs <= 1 }
 
 # p 'Part 1'
 
@@ -55,26 +52,26 @@ adjacent = ->(h, t) { (h[0] - t[0]).abs <= 1 && (h[1] - t[1]).abs <= 1 }
 # end
 # p places.size
 
-p 'Part 2'
+p "Part 2"
 places = Set[[0, 0]]
 head = [0, 0]
 
 rope = Array.new(10) { [0, 0] }
 
 input.each_line do |line|
-  dir, steps = line.split(' ')
+  dir, steps = line.split(" ")
   steps = steps.to_i
   p "DIRECTIONS: #{dir}, #{steps}"
   steps.times do
     head = rope[0]
     case dir
-    when 'U'
+    when "U"
       head[1] += 1
-    when 'D'
+    when "D"
       head[1] -= 1
-    when 'L'
+    when "L"
       head[0] -= 1
-    when 'R'
+    when "R"
       head[0] += 1
     end
 
@@ -93,7 +90,7 @@ input.each_line do |line|
       end
     end
 
-    p 'AFTER:'
+    p "AFTER:"
     p head
     p rope
 

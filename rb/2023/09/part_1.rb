@@ -2,7 +2,7 @@ require "minitest/autorun"
 require "debug"
 
 path = File.expand_path("input.txt", __dir__)
-input = File.read(path)
+File.read(path)
 
 DATA.each_line.map do |line|
   sequence = line.split.map(&:to_i)

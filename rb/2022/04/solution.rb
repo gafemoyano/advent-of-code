@@ -1,15 +1,15 @@
-path = File.expand_path('input.txt', __dir__)
+path = File.expand_path("input.txt", __dir__)
 input = File.read(path)
 
-puts "#{'-' * 25}PART 1#{'-' * 25}"
+puts "#{"-" * 25}PART 1#{"-" * 25}"
 
 result = input
-         .each_line
-         .map { _1.split(',') }
-         .map do |couple|
+  .each_line
+  .map { _1.split(",") }
+  .map do |couple|
            first, second = couple
-           range_1 = first.split('-').map(&:to_i)
-           range_2 = second.split('-').map(&:to_i)
+           range_1 = first.split("-").map(&:to_i)
+           range_2 = second.split("-").map(&:to_i)
 
            [(range_1[0]..range_1[1]), (range_2[0]..range_2[1])]
          end.filter do |ranges|
@@ -19,15 +19,15 @@ end
 
 p result.size
 
-puts "#{'-' * 25}PART 2#{'-' * 25}"
+puts "#{"-" * 25}PART 2#{"-" * 25}"
 
 r2 = input
-     .each_line
-     .map { _1.split(',') }
-     .map do |couple|
+  .each_line
+  .map { _1.split(",") }
+  .map do |couple|
        first, second = couple
-       range_1 = first.split('-').map(&:to_i)
-       range_2 = second.split('-').map(&:to_i)
+       range_1 = first.split("-").map(&:to_i)
+       range_2 = second.split("-").map(&:to_i)
 
        [(range_1[0]..range_1[1]), (range_2[0]..range_2[1])]
      end.filter do |ranges|

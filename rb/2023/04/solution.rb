@@ -29,7 +29,6 @@ points = 0
 p "========POINTS========="
 p points
 
-
 p "========PART 2========="
 
 scratch = {
@@ -57,7 +56,6 @@ input.each_line do |line|
 end
 p "========POINTS========="
 p scratch.values.sum
-
 
 class SolutionTest < Minitest::Test
   def test_score

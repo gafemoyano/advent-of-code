@@ -1,10 +1,10 @@
 # require 'minitest/autorun'
-require 'debug'
+require "debug"
 
-path = File.expand_path('input.txt', __dir__)
-input = File.read(path)
+path = File.expand_path("input.txt", __dir__)
+File.read(path)
 
-p 'Part 1'
+p "Part 1"
 
 items = [
   [72, 97],
@@ -115,9 +115,9 @@ test = lambda { |worry, denominator, success, failure|
   p inspections
 end
 
-p '----------INSPECTIONS--------------'
+p "----------INSPECTIONS--------------"
 p inspections.sort!.reverse!
-p 'MONKEY BUSINESS'
+p "MONKEY BUSINESS"
 p inspections[0] * inspections[1]
 
 
