@@ -1,16 +1,13 @@
 # frozen_string_literal: true
-
-path = File.expand_path("input.txt", __dir__)
+#
+path = File.expand_path('input.txt', __dir__)
 input = File.read(path)
 
 # Part 1
 left = []
 right = []
 
-input
-  .each_line
-  .map(&:split)
-  .each do |(a, b)|
+input.each_line.map(&:split).each do |(a, b)|
   left << a.to_i
   right << b.to_i
 end
